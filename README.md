@@ -1,23 +1,22 @@
-# qpoint-proxy
+# qpoint-rewrite-html
 
-A Qpoint adapter for proxying requests from the edge
+A Qpoint adapter for rewriting the response html using the HtmlRewriter rules
 
 ## Usage
 
+Note: This adapter is useless without registered HtmlRewriter rules. Usually this adapter is added after other adapters that register rules.
+
 ```ts
 import Router from "@qpoint/router";
-import proxy from "@qpoint/proxy";
+import rewriteHtml from "@qpoint/rewrite-html";
 
 export default new Router()
-  .use(proxy({ appUrl: "https://qpoint.io" }))
+  .use(rewriteHtml())
 ```
 
 ## Installation
 
 ```bash
-npm add @qpoint/proxy
+npm add @qpoint/rewrite-html
 ```
 
-## Advanced
-
-`basePath` can be provided with the config if the upstream app is nested in the path.

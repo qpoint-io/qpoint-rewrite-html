@@ -1,22 +1,22 @@
 import { Context } from '@qpoint/router'
-import { proxyRequest } from './proxy'
 
-export * from './proxy'
-
-export interface ProxyConfig {
-  appUrl: string,
-  basePath?: string
+export interface RewriteHtmlConfig {
+  // nothing for now
 }
 
 // adapter registration
-export default function proxy(config: ProxyConfig) {
+export default function rewriteHtml(config: RewriteHtmlConfig) {
   // return middleware
-  return async function run(context: Context, next: Function) {
-    // extract the config
-    const { appUrl, basePath = '' } = config
+  return function run(context: Context, next: Function) {
+    // grab the response headers
+    const headers = context.response.headers;
 
-    // proxy the request
-    await proxyRequest(appUrl, context, { basePath })
+    // extract the content-type from the response
+    const contentType = headers.get("Content-Type") || headers.get('content-type');
+
+    // if it's html, let's transform
+    if (contentType?.startsWith("text/html"))
+      context.response = context.htmlRewriter.transform(context.response);
 
     // continue along
     return next()
