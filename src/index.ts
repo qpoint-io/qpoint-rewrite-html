@@ -5,7 +5,7 @@ export interface RewriteHtmlConfig {
 }
 
 // adapter registration
-export default function rewriteHtml(config: RewriteHtmlConfig) {
+export default function rewriteHtml(config: RewriteHtmlConfig = {}) {
   // return middleware
   return function run(context: Context, next: Function) {
     // grab the response headers
