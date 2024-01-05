@@ -1,6 +1,6 @@
 {
   "name": "@qpoint/rewrite-html",
-  "version": "0.2.0",
+  "version": "0.0.0",
   "description": "A Qpoint adapter for rewriting the response html using the HtmlRewriter rules",
   "author": "Tyler Flint <tyler@qpoint.io>",
   "homepage": "https://github.com/qpoint-io/qpoint-rewrite-html",
